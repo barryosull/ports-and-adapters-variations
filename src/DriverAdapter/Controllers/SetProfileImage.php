@@ -3,7 +3,6 @@
 namespace PortsAndApaptersVariations\DriverAdapter\Controllers;
 
 use Ramsey\Uuid\Uuid;
-use SplFileInfo;
 use Symfony\Component\HttpFoundation\Request;
 use PortsAndApaptersVariations\DriverAdapter\Usecases;
 use Symfony\Component\HttpFoundation\Response;
