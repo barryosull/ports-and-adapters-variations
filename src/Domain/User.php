@@ -4,19 +4,14 @@ namespace PortsAndApaptersVariations\Domain;
 
 use Ramsey\Uuid\UuidInterface;
 
-// TODO: Flesh out with real logic
 class User
 {
-    private $profileImageId = null;
+    public $userId = null;
+    public $profileImageId = null;
 
-    public static function find(UuidInterface $userId): User
+    public function __construct(UuidInterface $userId)
     {
-        return new User();
-    }
-
-    public static function save(User $user)
-    {
-
+        $this->userId = $userId;
     }
 
     public function setProfileImage(UuidInterface $imageId)
