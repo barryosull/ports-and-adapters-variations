@@ -1,11 +1,11 @@
 <?php
 
-namespace PortsAndApaptersVariationsTests\Acceptance\DriverAdapter;
+namespace PortsAndApaptersVariationsTests\Acceptance\DrivenAdapter;
 
 use PortsAndApaptersVariations\Domain\ImageRepository;
 use PortsAndApaptersVariations\Domain\User;
 use PortsAndApaptersVariations\Domain\UserRepository;
-use PortsAndApaptersVariations\DriverAdapter\Usecases\SetProfileImage;
+use PortsAndApaptersVariations\DrivenAdapter\Usecases\SetProfileImage;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Ramsey\Uuid\Uuid;
@@ -15,11 +15,15 @@ class SetProfileImageTest extends TestCase
 {
     private $imageRepository;
     private $userRepository;
+    private $inputAdapter;
+    private $outputAdapter;
 
     public function setUp()
     {
         $this->imageRepository = $this->prophesize(ImageRepository::class);
         $this->userRepository = $this->prophesize(UserRepository::class);
+        $this->inputAdapter = $this->prophesize(SetProfileImage\Input::class);
+        $this->outputAdapter = $this->prophesize(SetProfileImage\Output::class);
     }
 
     public function test_storing_a_profile_image_returns_the_image_id()
@@ -31,17 +35,17 @@ class SetProfileImageTest extends TestCase
         // Given
         $user = new User($userId);
         $this->givenUserExists($user);
+        $this->givenUserIdAndImage($userId, $image);
         $usecase = new SetProfileImage\Usecase(
             $this->imageRepository->reveal(),
             $this->userRepository->reveal()
         );
 
         // When
-        $command = new SetProfileImage\Command($userId, $image);
-        $imageId = $usecase->handle($command);
+        $usecase->handle($this->inputAdapter->reveal(), $this->outputAdapter->reveal());
 
         // Then
-        $this->assertImageIdWasReturned($imageId);
+        $this->assertImageIdWasReturned();
         $this->assertImageWasStored($image);
         $this->assertUserWasStoredWithProfileImage($user);
     }
@@ -54,9 +58,16 @@ class SetProfileImageTest extends TestCase
             ->shouldBeCalled();
     }
 
-    private function assertImageIdWasReturned($imageId)
+    private function givenUserIdAndImage(UuidInterface $userId, \SplFileInfo $image)
     {
-        $this->assertInstanceOf(UuidInterface::class, $imageId);
+        $this->inputAdapter->userId()->willReturn($userId);
+        $this->inputAdapter->image()->willReturn($image);
+    }
+
+    private function assertImageIdWasReturned()
+    {
+        $this->outputAdapter->imageId(Argument::type(UuidInterface::class))
+            ->shouldHaveBeenCalled();
     }
 
     private function assertImageWasStored($image)
