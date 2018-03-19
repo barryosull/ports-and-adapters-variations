@@ -9,12 +9,12 @@ The Clean Architecture advocates the driven approach, but I've never tried it my
 Each type has it's own structure, acceptance and unit tests. I've omitted any details not pertinent to the issue at hand, such as persistence, since those are always driven adapters and are well understood.
  
 ## Thoughts so far
-- Improving the readability of the acceptance tests and possibly encapsulating the `application` in a single concept will make it easier to see which is better.
 - I don't like how the output adapter turned out, it's basically a builder (which isn't a bad thing, now that I think about it)
 - No matter which model is chosen, each usecase will have it's own signature, they are never uniform.
 - Driven controllers are incredibly generic, their tests as well, makes testing a breeze
-- Driver controller unit tests are much more complex
 - Driven input and output unit tests are a doddle and are easy to understand
+- Driver controller unit tests are much more complex
 
-## Next Steps
-As part of this, I'm going to have some fun with testing as well. I want to explore acceptance tests and the framework that supports testing. I think I can write better tests that better showcase a system and it's functionality, without exposing too many internals.
+## Testing fun
+As part of this I've also played around with building an application runner, that makes it easy to prep the system into a certain state, so tests are cleaner and the details are encapsulated. 
+I'm quite happy with how this turned out, it's easy to understand and easy to modify. Both implementation have the same ApplicationRunner interface, so the point is kind of proven.
