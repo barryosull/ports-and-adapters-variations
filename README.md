@@ -10,3 +10,5 @@ The Clean Architecture advocates the driven approach, but I've never tried it my
  
  I've just finished writing both, and I intend to write up an analysis later on. I plan to compare both styles, in terms of how easy they are to write and how easy they are to test.
 
+## Next Steps
+As part of this, I'm going to have some fun with testing as well. I want to explore acceptance tests and the framework that supports testing. I think I can write better tests that better showcase a system and it's functionality, without exposing too many internals.

@@ -8,7 +8,7 @@ use PortsAndApaptersVariations\DriverAdapter\Usecases\SetProfileImage;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-class Controller implements \PortsAndApaptersVariations\Controllers\SetProfileImage
+class Controller
 {
     private $usecase;
 
