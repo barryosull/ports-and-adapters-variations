@@ -56,7 +56,7 @@ class ApplicationRunner extends TestCase
 
     public function thenImageIdWasReturned(): ApplicationRunner
     {
-        $this->setProfileImageOutputAdapter->imageId(Argument::type(UuidInterface::class))
+        $this->setProfileImageOutputAdapter->withImageId(Argument::type(UuidInterface::class))
             ->shouldHaveBeenCalled();
 
         return $this;

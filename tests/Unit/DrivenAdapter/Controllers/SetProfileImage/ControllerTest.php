@@ -17,7 +17,7 @@ class ControllerTest extends TestCase
 
         $expectedResponse = $this->prophesize(Response::class)->reveal();
 
-        $output->response()
+        $output->buildResponse()
             ->shouldBeCalled()
             ->willReturn($expectedResponse);
 

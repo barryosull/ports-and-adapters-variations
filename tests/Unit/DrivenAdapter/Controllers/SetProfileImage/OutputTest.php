@@ -12,9 +12,9 @@ class OutputTest extends TestCase
     {
         $output = new Output();
 
-        $output->imageId(Uuid::uuid4());
+        $output->withImageId(Uuid::uuid4());
 
-        $response = $output->response();
+        $response = $output->buildResponse();
 
         $this->assertTrue($response->isOk(), "Expected a 200 response");
         $this->assertEquals("application/json", $response->headers->get("Content-Type"), "Expected JSON");

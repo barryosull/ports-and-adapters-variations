@@ -26,7 +26,7 @@ class Usecase
         $user->setProfileImage($imageId);
         $this->userRepository->store($user);
 
-        $output->imageId($imageId);
+        $output->withImageId($imageId);
     }
 }
 

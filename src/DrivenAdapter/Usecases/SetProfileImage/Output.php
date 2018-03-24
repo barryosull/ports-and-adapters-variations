@@ -6,5 +6,5 @@ use Ramsey\Uuid\UuidInterface;
 
 interface Output
 {
-    public function imageId(UuidInterface $imageId);
+    public function withImageId(UuidInterface $imageId);
 }

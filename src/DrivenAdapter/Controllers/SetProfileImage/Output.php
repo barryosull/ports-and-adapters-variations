@@ -11,12 +11,12 @@ class Output implements Usecases\SetProfileImage\Output
 {
     private $response;
 
-    public function imageId(UuidInterface $imageId)
+    public function withImageId(UuidInterface $imageId)
     {
         $this->response = JsonResponse::create(['image_id'=>$imageId->toString()]);
     }
 
-    public function response(): Response
+    public function buildResponse(): Response
     {
         return $this->response;
     }

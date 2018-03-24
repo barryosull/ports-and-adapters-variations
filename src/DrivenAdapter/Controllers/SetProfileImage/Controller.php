@@ -22,6 +22,6 @@ class Controller
     {
         $this->usecase->handle($this->input, $this->output);
 
-        return $this->output->response();
+        return $this->output->buildResponse();
     }
 }
